@@ -76,30 +76,179 @@ Derived ocean dataset used for integration experiments
 
 ## Current Status
 
-Completed:
+### Completed integrations
 
-- ORAS5 ingestion and preprocessing  
-- CASCADE ingestion  
-- Initial ORAS5–CASCADE harmonization  
-- Spatial and temporal alignment  
-- Preliminary analysis (see notebooks)
+✅ CASCADE biological dataset
 
-In progress:
+✅ ORAS5 physical ocean reanalysis dataset
 
-- BGC-ARGO integration  
-- Satellite chlorophyll alignment  
-- CMEMS physical–biogeochemical merging  
+✅ NASA Ocean Color satellite products
+
+### Planned integrations
+
+⬜ World Ocean Database (WOD)
+
+⬜ BGC-ARGO
+
+⬜ BCO-DMO
+
+⬜ CMEMS
+
+⬜ Additional satellite-derived environmental products
+---
+
+## Integrated Data Sources
+
+### Biological Data
+
+**CASCADE**
+
+Contains biological measurements including:
+
+- Cell abundance
+
+- Particulate Organic Carbon (POC)
+
+- Particulate Inorganic Carbon (PIC)
+
+- Related biological variables
+
+Source:
+
+https://github.com/nanophyto/CASCADE/tree/v0.1.1
 
 ---
 
-## Integration Framework
+### Physical Ocean Data
 
-1. Data ingestion and metadata harmonization  
-2. Spatial interpolation to North Atlantic gyre grid  
-3. Temporal alignment and resampling  
-4. Physical–chemical variable coupling  
-5. Derived feature generation  
-6. Validation and cross-dataset consistency checks  
+**ORAS5 Ocean Reanalysis**
+
+Contains ocean physical variables including:
+
+- Temperature
+
+- Salinity
+
+- Ocean current variables
+
+- Physical ocean conditions
+
+Source:
+
+https://www.ecmwf.int/en/forecasts/dataset/ocean-reanalysis-system-5
+
+---
+
+### Satellite Data
+
+**NASA Ocean Color**
+
+Satellite-derived environmental variables including:
+
+- Chlorophyll concentration
+
+- KD490 (light attenuation coefficient)
+
+- Ocean optical properties
+
+- Derived light-related environmental variables
+
+Source:
+
+https://oceancolor.gsfc.nasa.gov/
+
+---
+
+## Current Integration Workflow
+
+#### Step 1
+
+Merge biological measurements from CASCADE datasets.
+
+Notebook:
+
+```text
+
+01_merge_cascade_oras5.ipynb
+
+```
+
+Tasks:
+
+- Load and preprocess CASCADE biological variables
+
+- Load ORAS5 physical variables
+
+- Perform spatiotemporal matching
+
+- Merge biological and physical measurements
+
+- Generate integrated dataset
+
+---
+
+#### Step 2
+
+Integrate satellite-derived environmental information.
+
+Notebook:
+
+```text
+
+02_merge_nasa_ocean_color_with_cascade_oras5.ipynb
+
+```
+
+Tasks:
+
+- Load merged CASCADE–ORAS5 dataset
+
+- Extract NASA Ocean Color products
+
+- Match satellite observations
+
+- Generate derived environmental variables
+
+- Handle missing values through imputation
+
+---
+
+## Current Features Included
+
+Examples of integrated variables include:
+
+Biological:
+
+- Cells per liter
+
+- POC
+
+- PIC
+
+Physical:
+
+- Temperature
+
+- Salinity
+
+- Current speed
+
+Satellite-derived:
+
+- Chlorophyll-a
+
+- KD490
+
+- Light-related proxy variables
+
+Derived:
+
+- Estimated environmental features
+
+- Distance matching metrics
+
+- Imputed variables
+
 
 ---
 
